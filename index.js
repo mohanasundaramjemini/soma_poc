@@ -9,6 +9,13 @@ app.use(express.json());
 const uri = "mongodb+srv://mohan:shineai@123@cluster0.lilwp.mongodb.net/shineai?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
+app.get('/', (req, res) => {
+    try {
+        res.status(200).json({ message: "Hello user, Welcome" });
+    } catch (e) {
+        return res.status(500).json({ message: e.message });
+    }
+});
 app.get('/api/users/:mobile?', (req, res) => {
     try {
         client.connect(err => {
