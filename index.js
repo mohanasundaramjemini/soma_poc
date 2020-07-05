@@ -45,7 +45,7 @@ app.post('/api/register', (req, res) => {
             // Get the documents collection
             const collection = client.db("shineai").collection('users');
             // Insert some documents
-            collection.insert([
+            collection.insertOne([
                 { mobile: req.body.mobile }
             ], function (err, result) {
                 assert.equal(err, null);
