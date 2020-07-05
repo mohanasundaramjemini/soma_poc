@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 const uri = "mongodb+srv://mohan:shineai@123@cluster0.lilwp.mongodb.net/shineai?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true }); //, useUnifiedTopology: true
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.get('/', (req, res) => {
     try {
@@ -21,6 +21,7 @@ app.get('/api/users/:mobile?', (req, res) => {
         client.connect(err => {
             const collection = client.db("shineai").collection("users");
             const mobileNumber = req.params.mobile;
+            console.log('Param ==> ', mobileNumber);
             if (mobileNumber) {
                 collection.find({ 'mobile': mobileNumber }).toArray(function (err, docs) {
                     assert.equal(err, null);
