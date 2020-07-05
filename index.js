@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 const uri = "mongodb+srv://mohan:shineai@123@cluster0.lilwp.mongodb.net/shineai?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri, { useNewUrlParser: true }); //, useUnifiedTopology: true
 
 app.get('/', (req, res) => {
     try {
