@@ -1,0 +1,11 @@
+
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+    "mobile": "9677697446"
+}
+
+###
+
+GET http://localhost:3000/api/users/9677697446
