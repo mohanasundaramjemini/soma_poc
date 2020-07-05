@@ -11,7 +11,16 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 app.get('/', (req, res) => {
     try {
-        res.status(200).json({ message: "Hello user, Welcome" });
+        // res.status(200).json({ message: "Hello user, Welcome" });
+        client.connect(err => {
+            const collection = client.db("shineai").collection("users");
+            collection.find({}).toArray(function (err, docs) {
+                assert.equal(err, null);
+                res.status(200).json({ docs });
+            });
+
+            // client.close();
+        });
     } catch (e) {
         return res.status(500).json({ message: e.message });
     }
